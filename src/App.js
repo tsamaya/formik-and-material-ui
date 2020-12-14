@@ -1,11 +1,9 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 
-import UserContainer from './containers/UserContainer';
-
-
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import UserContainer from './containers/UserContainer';
 
 import useStyles from './styles/AppStyles';
 
@@ -21,10 +19,10 @@ const App = () => {
         <h2>A simple app</h2>
       </header>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <UserContainer /> 
+        <UserContainer />
       </MuiPickersUtilsProvider>
     </Container>
   );
-}
+};
 
 export default App;

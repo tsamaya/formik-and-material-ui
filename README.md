@@ -1,5 +1,7 @@
 # Formik used alongside Material-UI
 
+[![Build Status](https://travis-ci.com/tsamaya/formik-and-material-ui.svg?branch=main)](https://travis-ci.com/tsamaya/formik-and-material-ui)
+
 ```
 npx create-react-app formik-and-material-ui
 
@@ -8,6 +10,8 @@ cd formik-and-material-ui
 yarn add @material-ui/core
 
 yarn add @material-ui/pickers
+
+yarn add @material-ui/lab
 
 yarn add @material-ui/icons
 
@@ -19,8 +23,13 @@ yarn add formik-material-ui
 
 yarn add formik-material-ui-pickers @date-io/date-fns@1.x date-fns
 
-yarn add formik-material-ui-lab @material-ui/lab
+yarn add formik-material-ui-lab
 
+```
+
+```
+yarn add -D prettier
+yarn add -D eslint-config-airbnb-base eslint-config-prettier eslint-plugin-jsx-a11y eslint-plugin-prettier
 ```
 
 ## License
