@@ -1,22 +1,32 @@
 /* eslint-disable react/prop-types */
 import React, { Fragment } from 'react';
 import {
+  FormControl,
   FormControlLabel,
   FormLabel,
+  InputLabel,
+  MenuItem,
   Radio,
   TextField as MUITextField,
 } from '@material-ui/core';
-import { Field } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 import {
   CheckboxWithLabel,
   RadioGroup,
+  Select,
   Switch,
   TextField,
 } from 'formik-material-ui';
 import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { Autocomplete } from 'formik-material-ui-lab';
 
-const UserFormFields = ({ movies, errors, touched, isSubmitting }) => {
+const UserFormFields = ({
+  currencies,
+  movies,
+  errors,
+  touched,
+  isSubmitting,
+}) => {
   return (
     <Fragment>
       <Field
@@ -27,7 +37,9 @@ const UserFormFields = ({ movies, errors, touched, isSubmitting }) => {
         type="text"
         label="Name"
       />
+
       <br />
+
       <Field
         component={TextField}
         required
@@ -42,20 +54,22 @@ const UserFormFields = ({ movies, errors, touched, isSubmitting }) => {
         label="Password"
         name="password"
       />
+
       <br />
+
       <Field
         component={KeyboardDatePicker}
         required
         label="Date of Birth"
         name="birthday"
-        format="dd/mm/yyyy"
+        format="dd/MM/yyyy"
       />
+
       <br />
+
       <Field component={RadioGroup} name="gender">
         {/* required is not automatic */}
-
         <FormLabel component="legend">Gender *</FormLabel>
-
         <FormControlLabel
           value="male"
           control={<Radio disabled={isSubmitting} />}
@@ -68,6 +82,8 @@ const UserFormFields = ({ movies, errors, touched, isSubmitting }) => {
           label="She"
           disabled={isSubmitting}
         />
+        {/* error is not automatic */}
+        <ErrorMessage name="gender" />
       </Field>
 
       <FormLabel component="legend">
@@ -82,6 +98,35 @@ const UserFormFields = ({ movies, errors, touched, isSubmitting }) => {
       </FormLabel>
 
       <br />
+
+      <FormControl fullWidth>
+        {/* required is not automatic */}
+        <InputLabel htmlFor="currency-field">Currency *</InputLabel>
+        <Field
+          component={Select}
+          name="currency"
+          inputProps={{
+            id: 'currency-field',
+          }}
+        >
+          {currencies &&
+            currencies.map((currenncy, idx) => {
+              console.log(currenncy);
+              return (
+                <MenuItem
+                  key={idx}
+                  value={currenncy.code}
+                >{`${currenncy.code} ${currenncy.label}`}</MenuItem>
+              );
+            })}
+        </Field>
+        {/* error is not automatic */}
+        <ErrorMessage name="currency" />
+      </FormControl>
+
+      <br />
+
+      {/* touched and errors must be in props and touched is not automatic */}
       <Field
         name="movie"
         component={Autocomplete}
@@ -98,14 +143,28 @@ const UserFormFields = ({ movies, errors, touched, isSubmitting }) => {
           />
         )}
       />
+
       <br />
 
+      <Field
+        component={TextField}
+        required
+        fullWidth
+        name="magic"
+        type="number"
+        label="Magic decimal number"
+      />
+
+      <br />
+
+      {/* error is not automatic */}
       <Field
         component={CheckboxWithLabel}
         type="checkbox"
         name="terms"
         Label={{ label: 'Accept Terms and Conditions' }}
       />
+      <ErrorMessage name="terms" />
     </Fragment>
   );
 };

@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Paper } from '@material-ui/core';
 import UserForm from '../components/UserForm';
 
+import currencies from '../data/currencies';
 import movies from '../data/movies';
 
 const UserContainer = () => {
@@ -12,9 +13,11 @@ const UserContainer = () => {
     email: '',
     password: '',
     birthday: null,
-    gender: 'male',
+    gender: '',
     newsletter: 'yes',
+    currency: '',
     movie: null,
+    magic: 'NaN',
     terms: false,
   };
 
@@ -24,10 +27,13 @@ const UserContainer = () => {
       .required('Required'),
     email: Yup.string().email('Invalid email address').required('Required'),
     password: Yup.string().required(),
-    birthday: Yup.date().required(),
+    birthday: Yup.date().typeError('Birthday is mandatory').required(),
     gender: Yup.string().required(),
     // newsletter: Yup.string()
-    movie: Yup.object().required(),
+    currency: Yup.string().required(),
+    movie: Yup.object().typeError('Mandatory selection').required(),
+    magic: Yup.number().typeError('Mandatory magic decimal number').required(),
+    terms: Yup.bool().oneOf([true], 'Terms must be accepted'),
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -47,6 +53,7 @@ const UserContainer = () => {
       {({ values, errors, touched, ...rest }) => (
         <Fragment>
           <UserForm
+            currencies={currencies}
             movies={movies}
             errors={errors}
             touched={touched}

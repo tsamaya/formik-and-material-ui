@@ -6,6 +6,7 @@ import { Button, LinearProgress, Paper } from '@material-ui/core';
 import UserFormFields from './UserFormFields';
 
 const UserForm = ({
+  currencies,
   movies,
   errors,
   touched,
@@ -16,6 +17,7 @@ const UserForm = ({
   <Paper>
     <Form>
       <UserFormFields
+        currencies={currencies}
         movies={movies}
         errors={errors}
         touched={touched}
