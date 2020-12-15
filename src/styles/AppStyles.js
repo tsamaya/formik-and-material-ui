@@ -3,7 +3,7 @@ import sizes from '../helpers/sizes';
 
 export default makeStyles({
   App: {
-    width: '50%',
+    width: '60%',
     margin: '0 auto',
     [sizes.down('md')]: {
       width: '70%',

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   FormControl,
   FormControlLabel,
@@ -19,6 +19,7 @@ import {
 } from 'formik-material-ui';
 import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { Autocomplete } from 'formik-material-ui-lab';
+import useStyles from '../styles/UserFormStyles';
 
 const UserFormFields = ({
   currencies,
@@ -27,9 +28,12 @@ const UserFormFields = ({
   touched,
   isSubmitting,
 }) => {
+  const classes = useStyles();
+
   return (
-    <Fragment>
+    <div className={classes.fields}>
       <Field
+        className={classes.field}
         component={TextField}
         required
         fullWidth
@@ -38,16 +42,17 @@ const UserFormFields = ({
         label="Name"
       />
 
-      <br />
-
       <Field
+        className={classes.field}
         component={TextField}
         required
         name="email"
         type="email"
         label="Email"
       />
+
       <Field
+        className={classes.field}
         component={TextField}
         required
         type="password"
@@ -55,19 +60,17 @@ const UserFormFields = ({
         name="password"
       />
 
-      <br />
-
       <Field
+        className={classes.field}
         component={KeyboardDatePicker}
         required
+        clearable={true}
         label="Date of Birth"
         name="birthday"
         format="dd/MM/yyyy"
       />
 
-      <br />
-
-      <Field component={RadioGroup} name="gender">
+      <Field component={RadioGroup} name="gender" className={classes.field}>
         {/* required is not automatic */}
         <FormLabel component="legend">Gender *</FormLabel>
         <FormControlLabel
@@ -86,7 +89,7 @@ const UserFormFields = ({
         <ErrorMessage name="gender" />
       </Field>
 
-      <FormLabel component="legend">
+      <FormLabel component="legend" className={classes.field}>
         Newsletter No{' '}
         <Field
           component={Switch}
@@ -97,9 +100,7 @@ const UserFormFields = ({
         Yes
       </FormLabel>
 
-      <br />
-
-      <FormControl fullWidth>
+      <FormControl fullWidth className={classes.field}>
         {/* required is not automatic */}
         <InputLabel htmlFor="currency-field">Currency *</InputLabel>
         <Field
@@ -111,7 +112,6 @@ const UserFormFields = ({
         >
           {currencies &&
             currencies.map((currenncy, idx) => {
-              console.log(currenncy);
               return (
                 <MenuItem
                   key={idx}
@@ -124,10 +124,9 @@ const UserFormFields = ({
         <ErrorMessage name="currency" />
       </FormControl>
 
-      <br />
-
       {/* touched and errors must be in props and touched is not automatic */}
       <Field
+        className={classes.field}
         name="movie"
         component={Autocomplete}
         options={movies}
@@ -144,9 +143,8 @@ const UserFormFields = ({
         )}
       />
 
-      <br />
-
       <Field
+        className={classes.field}
         component={TextField}
         required
         fullWidth
@@ -155,17 +153,17 @@ const UserFormFields = ({
         label="Magic decimal number"
       />
 
-      <br />
-
-      {/* error is not automatic */}
-      <Field
-        component={CheckboxWithLabel}
-        type="checkbox"
-        name="terms"
-        Label={{ label: 'Accept Terms and Conditions' }}
-      />
-      <ErrorMessage name="terms" />
-    </Fragment>
+      <div className={classes.field}>
+        {/* error is not automatic */}
+        <Field
+          component={CheckboxWithLabel}
+          type="checkbox"
+          name="terms"
+          Label={{ label: 'Accept Terms and Conditions' }}
+        />
+        <ErrorMessage name="terms" />
+      </div>
+    </div>
   );
 };
 export default UserFormFields;

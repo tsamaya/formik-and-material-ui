@@ -37,7 +37,7 @@ const UserContainer = () => {
   });
 
   const handleSubmit = (values, { setSubmitting }) => {
-    console.log('submitting');
+    // console.log('submitting');
     setTimeout(() => {
       setSubmitting(false);
       alert(JSON.stringify(values, null, 2));
