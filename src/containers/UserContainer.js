@@ -40,6 +40,7 @@ const UserContainer = () => {
     // console.log('submitting');
     setTimeout(() => {
       setSubmitting(false);
+      // eslint-disable-next-line no-alert
       alert(JSON.stringify(values, null, 2));
     }, 500);
   };
