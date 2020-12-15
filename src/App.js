@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Container } from '@material-ui/core';
 
-function App() {
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import UserContainer from './containers/UserContainer';
+
+import useStyles from './styles/AppStyles';
+
+const App = () => {
+  const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <Container maxWidth="md">
+      <header className={classes.header}>
+        <h1>
+          Formik & <span>Material-UI</span>
+        </h1>
+        <h2>A simple app</h2>
       </header>
-    </div>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <UserContainer />
+      </MuiPickersUtilsProvider>
+    </Container>
   );
-}
+};
 
 export default App;

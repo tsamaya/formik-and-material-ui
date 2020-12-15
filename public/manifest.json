@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Formik & MUI",
+  "name": "Example App using Formik and Material-UI",
   "icons": [
     {
       "src": "favicon.ico",
