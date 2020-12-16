@@ -18,6 +18,14 @@ import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { Autocomplete } from 'formik-material-ui-lab';
 import useStyles from '../styles/UserFormStyles';
 
+const ErrorM = ({ children }) => {
+  return (
+    <div>
+      <font color="red">{children}</font>
+    </div>
+  );
+};
+
 const UserFormFields = ({ currencies, movies }) => {
   const classes = useStyles();
 
@@ -79,11 +87,11 @@ const UserFormFields = ({ currencies, movies }) => {
           disabled={isSubmitting}
         />
         {/* error is not automatic */}
-        <ErrorMessage name="gender" />
+        <ErrorMessage name="gender" component={ErrorM} />
       </Field>
 
       <FormLabel component="legend" className={classes.field}>
-        Newsletter No{' '}
+        Newsletter: No{' '}
         <Field component={Switch} type="checkbox" name="newsletter" /> Yes
       </FormLabel>
 
@@ -95,9 +103,9 @@ const UserFormFields = ({ currencies, movies }) => {
         margin="normal"
         name="currency"
         label="Currency"
-        inputProps={{
-          id: 'currency-field',
-        }}
+        // inputProps={{
+        //   id: 'currency-field',
+        // }}
       >
         {currencies &&
           currencies.map((currenncy, idx) => {
@@ -147,7 +155,7 @@ const UserFormFields = ({ currencies, movies }) => {
           name="terms"
           Label={{ label: 'Accept Terms and Conditions' }}
         />
-        <ErrorMessage name="terms" />
+        <ErrorMessage name="terms" component={ErrorM} />
       </div>
     </div>
   );
