@@ -1,32 +1,20 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 
-import { Form } from 'formik';
+import { Form, useFormikContext } from 'formik';
 import { Button, LinearProgress, Paper } from '@material-ui/core';
 import UserFormFields from './UserFormFields';
 import useStyles from '../styles/UserFormStyles';
 
-const UserForm = ({
-  currencies,
-  movies,
-  errors,
-  touched,
-  resetForm,
-  submitForm,
-  isSubmitting,
-}) => {
+const UserForm = ({ currencies, movies }) => {
   const classes = useStyles();
+
+  const { resetForm, submitForm, isSubmitting } = useFormikContext();
 
   return (
     <Paper className={classes.paper}>
       <Form>
-        <UserFormFields
-          currencies={currencies}
-          movies={movies}
-          errors={errors}
-          touched={touched}
-          isSubmitting={isSubmitting}
-        />
+        <UserFormFields currencies={currencies} movies={movies} />
 
         {isSubmitting && <LinearProgress />}
         <div className={classes.buttons}>

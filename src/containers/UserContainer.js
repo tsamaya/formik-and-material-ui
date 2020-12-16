@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { Fragment } from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
@@ -7,19 +8,19 @@ import UserForm from '../components/UserForm';
 import currencies from '../data/currencies';
 import movies from '../data/movies';
 
-const UserContainer = () => {
-  const initialValues = {
-    name: '',
-    email: '',
-    password: '',
-    birthday: null,
-    gender: '',
-    newsletter: 'yes',
-    currency: '',
-    movie: null,
-    magic: 'NaN',
-    terms: false,
-  };
+const UserContainer = ({ initialValues }) => {
+  // const initialValues = {
+  //   name: '',
+  //   email: '',
+  //   password: '',
+  //   birthday: '',
+  //   gender: '',
+  //   newsletter: false,
+  //   currency: '',
+  //   movie: '',
+  //   magic: 'NaN',
+  //   terms: false,
+  // };
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -29,7 +30,7 @@ const UserContainer = () => {
     password: Yup.string().required(),
     birthday: Yup.date().typeError('Birthday is mandatory').required(),
     gender: Yup.string().required(),
-    // newsletter: Yup.string()
+    newsletter: Yup.bool(),
     currency: Yup.string().required(),
     movie: Yup.object().typeError('Mandatory selection').required(),
     magic: Yup.number().typeError('Mandatory magic decimal number').required(),
@@ -53,13 +54,7 @@ const UserContainer = () => {
     >
       {({ values, errors, touched, ...rest }) => (
         <Fragment>
-          <UserForm
-            currencies={currencies}
-            movies={movies}
-            errors={errors}
-            touched={touched}
-            {...rest}
-          />
+          <UserForm currencies={currencies} movies={movies} {...rest} />
           <br />
           <Paper>
             values<pre>{JSON.stringify(values, null, 2)}</pre>

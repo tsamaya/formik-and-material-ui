@@ -10,6 +10,32 @@ import useStyles from './styles/AppStyles';
 const App = () => {
   const classes = useStyles();
 
+  const newOne = {
+    name: '',
+    email: '',
+    password: '',
+    birthday: '',
+    gender: '',
+    newsletter: false,
+    currency: '',
+    movie: '',
+    magic: 'NaN',
+    terms: false,
+  };
+
+  const toEdit = {
+    name: 'Joe',
+    email: 'joe@email.com',
+    password: 'secret',
+    birthday: '2000-01-15',
+    gender: 'male',
+    newsletter: true,
+    currency: 'EUR',
+    movie: { title: 'Pulp Fiction', year: 1994 },
+    magic: 3.141516,
+    terms: true,
+  };
+
   return (
     <Container maxWidth="md">
       <header className={classes.header}>
@@ -19,7 +45,9 @@ const App = () => {
         <h2>A simple app</h2>
       </header>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <UserContainer />
+        <UserContainer initialValues={newOne} />
+        <hr></hr>
+        <UserContainer initialValues={toEdit} />
       </MuiPickersUtilsProvider>
     </Container>
   );

@@ -9,7 +9,7 @@ const currencies = [
   },
   {
     code: 'GBP',
-    label: '',
+    label: '£',
   },
 ];
 
