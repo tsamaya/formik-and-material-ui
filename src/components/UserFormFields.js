@@ -1,19 +1,16 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  FormControl,
   FormControlLabel,
   FormLabel,
-  InputLabel,
   MenuItem,
   Radio,
   TextField as MUITextField,
 } from '@material-ui/core';
-import { ErrorMessage, Field } from 'formik';
+import { ErrorMessage, Field, useFormikContext } from 'formik';
 import {
   CheckboxWithLabel,
   RadioGroup,
-  Select,
   Switch,
   TextField,
 } from 'formik-material-ui';
@@ -21,14 +18,10 @@ import { KeyboardDatePicker } from 'formik-material-ui-pickers';
 import { Autocomplete } from 'formik-material-ui-lab';
 import useStyles from '../styles/UserFormStyles';
 
-const UserFormFields = ({
-  currencies,
-  movies,
-  errors,
-  touched,
-  isSubmitting,
-}) => {
+const UserFormFields = ({ currencies, movies }) => {
   const classes = useStyles();
+
+  const { errors, touched, isSubmitting } = useFormikContext();
 
   return (
     <div className={classes.fields}>
@@ -91,38 +84,31 @@ const UserFormFields = ({
 
       <FormLabel component="legend" className={classes.field}>
         Newsletter No{' '}
-        <Field
-          component={Switch}
-          type="checkbox"
-          value={'yes'}
-          name="newsletter"
-        />{' '}
-        Yes
+        <Field component={Switch} type="checkbox" name="newsletter" /> Yes
       </FormLabel>
 
-      <FormControl fullWidth className={classes.field}>
-        {/* required is not automatic */}
-        <InputLabel htmlFor="currency-field">Currency *</InputLabel>
-        <Field
-          component={Select}
-          name="currency"
-          inputProps={{
-            id: 'currency-field',
-          }}
-        >
-          {currencies &&
-            currencies.map((currenncy, idx) => {
-              return (
-                <MenuItem
-                  key={idx}
-                  value={currenncy.code}
-                >{`${currenncy.code} ${currenncy.label}`}</MenuItem>
-              );
-            })}
-        </Field>
-        {/* error is not automatic */}
-        <ErrorMessage name="currency" />
-      </FormControl>
+      <Field
+        className={classes.field}
+        fullWidth
+        component={TextField}
+        select
+        margin="normal"
+        name="currency"
+        label="Currency"
+        inputProps={{
+          id: 'currency-field',
+        }}
+      >
+        {currencies &&
+          currencies.map((currenncy, idx) => {
+            return (
+              <MenuItem
+                key={idx}
+                value={currenncy.code}
+              >{`${currenncy.code} ${currenncy.label}`}</MenuItem>
+            );
+          })}
+      </Field>
 
       {/* touched and errors must be in props and touched is not automatic */}
       <Field

@@ -14,7 +14,7 @@ const UserContainer = () => {
     password: '',
     birthday: null,
     gender: '',
-    newsletter: 'yes',
+    newsletter: true,
     currency: '',
     movie: null,
     magic: 'NaN',
@@ -53,13 +53,7 @@ const UserContainer = () => {
     >
       {({ values, errors, touched, ...rest }) => (
         <Fragment>
-          <UserForm
-            currencies={currencies}
-            movies={movies}
-            errors={errors}
-            touched={touched}
-            {...rest}
-          />
+          <UserForm currencies={currencies} movies={movies} {...rest} />
           <br />
           <Paper>
             values<pre>{JSON.stringify(values, null, 2)}</pre>
