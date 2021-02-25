@@ -14,7 +14,7 @@ const App = () => {
     name: '',
     email: '',
     password: '',
-    birthday: '',
+    birthday: null,
     gender: '',
     newsletter: false,
     currency: '',
