@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
+import { Container, CssBaseline } from '@material-ui/core';
 
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -38,6 +38,7 @@ const App = () => {
 
   return (
     <Container maxWidth="md">
+      <CssBaseline />
       <header className={classes.header}>
         <h1>
           Formik & <span>Material-UI</span>
