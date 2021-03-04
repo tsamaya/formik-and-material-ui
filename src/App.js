@@ -18,7 +18,7 @@ const App = () => {
     gender: '',
     newsletter: false,
     currency: '',
-    movie: '',
+    movie: null,
     magic: 'NaN',
     terms: false,
   };
