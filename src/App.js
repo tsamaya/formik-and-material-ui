@@ -19,7 +19,7 @@ const App = () => {
     newsletter: false,
     currency: '',
     movie: null,
-    magic: 'NaN',
+    magic: '',
     terms: false,
   };
 
