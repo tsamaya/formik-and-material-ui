@@ -103,9 +103,6 @@ const UserFormFields = ({ currencies, movies }) => {
         margin="normal"
         name="currency"
         label="Currency"
-        // inputProps={{
-        //   id: 'currency-field',
-        // }}
       >
         {currencies &&
           currencies.map((currenncy, idx) => {
