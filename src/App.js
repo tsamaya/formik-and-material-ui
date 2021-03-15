@@ -32,7 +32,7 @@ const App = () => {
     newsletter: true,
     currency: 'EUR',
     movie: { title: 'Pulp Fiction', year: 1994 },
-    magic: 3.141516,
+    magic: 3.14159265359,
     terms: true,
   };
 
